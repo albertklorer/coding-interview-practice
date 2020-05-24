@@ -1,4 +1,6 @@
-# Remove Dups: Write code to remove duplicates from an unsorted linked list. 
+# Delete Middle Node: Implement an algorithm to delete a node in the middle (i.e., any node but
+# the first and last node, not necessarily the exact middle) of a singly linked list, given only access to
+# that node. 
 
 class Node:
     def __init__(self, data):
@@ -20,18 +22,17 @@ class LinkedList:
 
             node.next = Node(data)
 
-    def removeDuplicates(self):
+    def deleteMiddle(self, data):
         node = self.head
         previous = None
-        values = set()
-    
+        count = 0
+
         while node != None:
-            if node.data in values:
+            if count >= 1 and data == node.data:
                 previous.next = node.next
-            else:
-                values.add(node.data)
-                previous = node
-            
+
+            count = count + 1
+            previous = node
             node = node.next
 
     def print(self):
@@ -41,9 +42,9 @@ class LinkedList:
             node = node.next
 
 linkedList = LinkedList()
+linkedList.insert(3)
 linkedList.insert(1)
+linkedList.insert(2)
 linkedList.insert(4)
-linkedList.insert(0)
-linkedList.insert(1)
-linkedList.removeDuplicates()
+linkedList.deleteMiddle(1)
 linkedList.print()
